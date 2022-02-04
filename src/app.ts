@@ -9,9 +9,9 @@ const button = document.getElementById("btnCompare");
 sourceDiv!.innerText = JSON.stringify(source);
 targetDiv!.innerText = JSON.stringify(target);
 const clicked = (source: any, target: any) => {
-    const [x, y] = compare(source, target)
-    targetDiv!.innerHTML = x;
-    sourceDiv!.innerHTML = y;
+    const [s, t] = compare(source, target)
+    targetDiv!.innerHTML = t;
+    sourceDiv!.innerHTML = s;
 }
 
 button!.addEventListener('click', clicked.bind(null, source, target))
