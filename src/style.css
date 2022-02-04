@@ -11,12 +11,12 @@
 .flex-child:first-child {
     margin-right: 20px;
 } 
-.missing {
+.remove {
     background-color: darkorange;
 }
-.additional {
+.add {
     background-color: rgb(0, 255, 213);
 }
-.replaced {
-     background-color: rgb(31, 102, 9);
+.replace {
+     background-color: rgb(239, 243, 11);
 }
