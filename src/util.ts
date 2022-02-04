@@ -69,10 +69,34 @@ const repeat = (s: string, count: number) => {
     return new Array(count + 1).join(s);
 }
 
+const jsonMap = require('json-source-map');
 
 export function join(str: string, start: number, end: number, classType: string): string {
     const leftPart = str.slice(0, start);
     const colorPart = str.slice(start, end);
     const rightPart = str.slice(end);
-    return leftPart + `<span class='${classType}'>` + colorPart + "</span>" + rightPart;
+    return `${leftPart} <span class='${classType}'>${colorPart}</span>${rightPart}`
+}
+
+export function getDifPosition(textValue: string, diff: any) {
+    const result = jsonMap.parse(textValue);
+    const pointers = result.pointers;
+    const path = diff.path;
+    const start = {
+        line: pointers[path].key
+            ? pointers[path].key.line
+            : pointers[path].value.line,
+        ch: pointers[path].key
+            ? pointers[path].key.column
+            : pointers[path].value.column,
+    };
+    const end = {
+        line: pointers[path].valueEnd.line,
+        ch: pointers[path].valueEnd.column,
+    };
+
+    return {
+        start: start,
+        end: end,
+    };
 }
