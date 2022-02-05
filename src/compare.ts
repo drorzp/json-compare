@@ -1,13 +1,18 @@
 import * as jsonpatch from 'fast-json-patch';
-import { format, getDifPosition, join } from './util';
+import { format as _format, getDifPosition, join } from './util';
+
 enum operation {
     ADD = "add",
     REMOVE = "remove",
     REPLACE = "replace"
 }
+
 enum origin {
     SOURCE = "source",
     TARGET = "target",
+}
+export function format(source: any) {
+    return `<pre>${_format(source)}</pre>`;
 }
 export function compare(source: any, target: any) {
     const diffList: { origin: string, operation: string, start: number, end: number }[] = [];
@@ -39,6 +44,7 @@ export function compare(source: any, target: any) {
         sourceStr = join(sourceStr, item.start, item.end, item.operation)
     }
     return [
-        '<pre>' + format(sourceStr).replace(/spanclass/g, 'span class') + '</pre>',
-        '<pre>' + format(targetStr).replace(/spanclass/g, 'span class') + '</pre>']
+        `<pre> ${_format(sourceStr).replace(/spanclass/g, 'span class')} </pre>`,
+        `<pre> ${_format(targetStr).replace(/spanclass/g, 'span class')} </pre>`
+    ]
 }

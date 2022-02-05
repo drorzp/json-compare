@@ -1,3 +1,5 @@
+const jsonMap = require('json-source-map');
+
 export function format(json: string) {
     var i = 0,
         il = 0,
@@ -62,14 +64,13 @@ export function format(json: string) {
         }
     }
 
+
     return newJson;
 }
 
 const repeat = (s: string, count: number) => {
     return new Array(count + 1).join(s);
 }
-
-const jsonMap = require('json-source-map');
 
 export function join(str: string, start: number, end: number, classType: string): string {
     const leftPart = str.slice(0, start);
